@@ -19,10 +19,10 @@ $serverStatus = 0;
 $output = curl_exec($curl);
 
 if (curl_exec($curl) === false) {
-    $serverStatus = 1;
+    $serverStatus = 2;
     echo '<script> console.log("Curl error: ' . curl_error($curl) . '")</script>';
 } elseif (!empty(curl_exec($curl)) && !empty($output)) {
-    $serverStatus = 2;
+    $serverStatus = 1;
     $json = json_decode($output, TRUE, 512, JSON_BIGINT_AS_STRING);
 } else {
     $serverStatus = 0;
@@ -50,6 +50,7 @@ error_reporting(E_ERROR | E_PARSE);
 
     <link rel="stylesheet" href="assets/css/home-one.css">
     <link rel="stylesheet" href="assets/css/fivem-status.css">
+    <link rel="stylesheet" href="assets/css/discord-home.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +89,11 @@ error_reporting(E_ERROR | E_PARSE);
                             <li class="nav-item"><a href="_page/crafting-table.php" class="nav-link"><i class="fa-solid fa-hammer"></i> โต๊ะคราฟ</a></li>
                             <li class="nav-item"><a href="_page/map.php" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> แผนที่</a></li>
                             <li class="nav-item"><a href="_profile_page/home-profile.php" class="nav-link"><i class="fa-solid fa-user"></i> โปรไฟล์</a></li>
+                            <?php
+                            if ($row['admin'] == 'superadmin') {
+                                echo '<li class="nav-item"><a href="_page/admin.php" class="nav-link"><i class="fa-solid fa-lock"></i>  เมนูแอดมิน</a></li>';
+                            }
+                            ?>
                             <li class="nav-item"><a href="_login&signup_page/logout.php" class="nav-link-logout"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a></li>
                         </ul>
                     </header>
@@ -110,47 +116,73 @@ error_reporting(E_ERROR | E_PARSE);
 
 
     <!----- FiveM Status ----->
-        <section class="fivem-col">
-            <h1 class="fivem-text-top">สถานะ</h1>
-            <div class="fivem-box">
-                <div class="fivem-head-text-box">
-                    <p>สถานะเซิร์ฟเวอร์</p>
-                </div>
-                <div class="fivem-card">
-                    <?php if ($serverStatus === 2) {
+    <section class="fivem-col">
+        <h1 class="fivem-text-top">NEXTLIFE SERVER</h1>
+        <div class="fivem-box">
+            <div class="fivem-head-text-box">
+                <p>สถานะ</p>
+            </div>
+            <div class="fivem-card">
+                <?php
+                require_once('./config/admin_one.php');
+                if ($admin_fivem_status_control == "A") {
+                    if ($serverStatus === 1) {
                         echo '<div">ออนไลน์</div>';
-                    } elseif ($serverStatus === 1) {
+                    } elseif ($serverStatus === 2) {
                         echo '<div">ออฟไลน์</div>';
                     } elseif ($serverStatus === 99) {
-                        echo '<div ">กำลังปรับปรุง</div>';
+                        echo '<div">กำลังปรับปรุง</div>';
                     } else {
-                        echo '<div">Loading</div>';
-                    } ?>
-                </div>
+                        echo '<div">กำลังโหลด</div>';
+                    }
+                } elseif ($admin_fivem_status_control == "M");
+                if ($admin_fivem_status == "online") {
+                    echo '<div">ออนไลน์</div>';
+                } elseif ($admin_fivem_status == "offline") {
+                    echo '<div">ออฟไลน์</div>';
+                } elseif ($admin_fivem_status == "edit") {
+                    echo '<div ">กำลังปรับปรุง</div>';
+                } else {
+                    echo '<div">กำลังโหลด</div>';
+                }
+                ?>
             </div>
-            <div class="fivem-box">
-                <div class="fivem-head-text-box">
-                    <p>ผู้เล่นที่ออนไลน์</p>
-                </div>
-                <div class="fivem-card">
-                    <?php if ($serverStatus === 2) {
-                        echo '<div>จำนวน ' . count($json) . ' คน</div>';
-                    } else {
-                        echo '<div>0 คน</div>';
-                    } ?>
-                </div>
+        </div>
+        <div class="fivem-box">
+            <div class="fivem-head-text-box">
+                <p>จำนวนผู้เล่น</p>
             </div>
-            <div class="fivem-box">
-                <div class="fivem-head-text-box-ip">
-                    <p>ที่อยู่เซิร์ฟเวอร์</p>
-                </div>
-                <div class="fivem-card-ip">
-                    <div >49.231.43.58</div>
-                    <button class="button-copy-fivem" onclick="myFunction()">คัดลอก</button>
-                </div>
+            <div class="fivem-card fivem-card-player">
+                <?php if ($serverStatus === 2) {
+                    echo '<div>' . count($json) . ' คน</div>';
+                } else {
+                    echo '<div>0 คน</div>';
+                } ?>
             </div>
-        </section>
-        <div class="clearfix"></div>
+        </div>
+        <div class="fivem-box">
+            <div class="fivem-head-text-box-ip">
+                <p>ที่อยู่เซิร์ฟเวอร์</p>
+            </div>
+            <div class="fivem-card-ip">
+                <div>IP : 49.231.43.58</div>
+                <button class="button-copy-fivem">คัดลอก</button>
+            </div>
+        </div>
+        <button title="button title" class="button-open-fivem" onclick=" window.open('fivem://connect/49.231.43.58:30120', '_blank'); return sfalse;">กดเพื่อเข้าร่วมเซิร์ฟเวอร์</button>
+    </section>
+
+
+    <!----- Discord ----->
+    <div class="discord-box">
+        <p class="Discord-Head-Text">DISCORD</p>
+        <div class="discord-widget">
+            <iframe src="https://discord.com/widget?id=1007469968692101243&theme=dark" width="250" height="380" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        </div>
+        <p class="Discord-Text">สามารถติดตามเรื่องราวต่างๆของประเทศได้ที่ Discord : NEXTLIFE CITY [NEWGEN]</p>
+        <button title="button title" class="button-link-discord" onclick=" window.open('https://discord.io/NextLifeCity/', '_blank'); return sfalse;">กดเพื่อเข้าร่วม Discord</button>
+    </div>
+
     <!----- Copyright ----->
     <footer class="text-muted py-5 ">
         <div class="container">
@@ -163,7 +195,22 @@ error_reporting(E_ERROR | E_PARSE);
 </html>
 <!----- FiveM Copy Button ----->
 <script>
+    const button = document.querySelector(".fivem-card-ip button");
 
+    button.addEventListener("click", () => {
+        copyToClipBoard();
+    });
+
+    function copyToClipBoard() {
+        const textarea = document.createElement("textarea");
+        textarea.setAttribute("readonly", "");
+        textarea.value = 'connect 49.231.43.58';
+        textarea.style.position = "absolute";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+    }
 </script>
 
 <!----- FiveM Status ----->

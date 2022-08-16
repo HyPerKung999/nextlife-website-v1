@@ -1,9 +1,9 @@
 <?php
 session_start();
 require_once 'config/db.php';
-if (isset($_SESSION['user_login'])) {
-    $_SESSION[''] = 'loading-tohomepage';
-    header('location: index.php');
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['error-login'] = 'กรุณาเข้าสู่ระบบก่อน';
+    header('location: index-not-login.php');
 }
 ?>
 

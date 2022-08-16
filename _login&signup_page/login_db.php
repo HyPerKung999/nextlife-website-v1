@@ -41,10 +41,10 @@ if ($result['success']) {
                         if (password_verify($password, $row['password'])) {
                             if ($row['urole'] == 'admin') {
                                 $_SESSION['admin_login'] = $row['id'];
-                                header("location: ../_login&signup_page/admin.php");
+                                header("location: ../index.php");
                             } else {
                                 $_SESSION['user_login'] = $row['id'];
-                                header("location: ../_login&signup_page/loginsuccess.php");
+                                header("location: ../index.php");
                             }
                         } else {
                             $_SESSION['error-password'] = '';

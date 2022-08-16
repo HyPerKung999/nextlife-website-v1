@@ -1,4 +1,4 @@
 <?php
-$serverIP = '147.50.229.23:30126';
+$serverIP = '49.231.43.58:30120';
 $updateFrequency = 5000
 ?>

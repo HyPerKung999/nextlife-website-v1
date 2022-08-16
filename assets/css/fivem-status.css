@@ -13,7 +13,7 @@ body {
   justify-items: center;
   margin: 0 auto;
   width: 790px;
-  height: 250px;
+  height: 300px;
   border-radius: 25px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
@@ -28,7 +28,7 @@ body {
   margin-top: 10px;
   width: 200px;
   height: 150px;
-  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.35);
   border-radius: 25px;
   text-align: center;
   background-color: #212529;
@@ -45,8 +45,8 @@ body {
 }
 .fivem-card {
   color: #fff;
-  padding-top: 20px;
-  font-size: 30px;
+  padding-top: 18px;
+  font-size: 40px;
   text-align: center;
 }
 .fivem-head-text-box-ip {
@@ -59,26 +59,35 @@ body {
 }
 .fivem-card-ip {
   color: #fff;
-  padding-top: 20px;
+  padding-top: 17px;
   font-size: 20px;
   text-align: center;
 }
 .button-copy-fivem {
   background-color: #2C6FFF;
   z-index: 1;
-  width: 130px;
+  width: 180px;
   height: 35px;
   border-radius: 25px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  margin-top: 5px;
-
-  font-size: 20 px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.button-open-fivem {
+  background-color: #2C6FFF;
+  z-index: 1;
+  width: 750px;
+  height: 45px;
+  border-radius: 25px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  margin: 20px 20px;
+  font-size: 20px;
 }
 @media only screen and (max-width: 600px) {
   .fivem-col {
     justify-items: center;
-    margin: 0 auto;
-    max-width: 370px;
+    margin-left: 20px;
+    width: 350px;
     height: 250px;
     border-radius: 25px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -91,8 +100,8 @@ body {
   }
   .fivem-box {
     margin-top: 5px;
-    width: 103px;
-    height: 150px;
+    width: 97px;
+    height: 120px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     text-align: center;
@@ -102,7 +111,7 @@ body {
   }
   .fivem-head-text-box {
     color: #fff;
-    padding-top: 0.8rem;
+    padding-top: 0.9rem;
     height: 50px;
     box-shadow: 0px 2px 0px rgb(255, 255, 255);
     text-align: center;
@@ -110,7 +119,13 @@ body {
   }
   .fivem-card {
     color: #fff;
-    padding-top: 25px;
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+  }
+  .fivem-card-player {
+    color: #fff;
+    padding-top: 16px;
     font-size: 25px;
     text-align: center;
   }
@@ -124,8 +139,28 @@ body {
   }
   .fivem-card-ip {
     color: #fff;
-    padding-top: 30px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 12px;
     text-align: center;
+  }
+  .button-copy-fivem {
+    background-color: #2C6FFF;
+    z-index: 1;
+    width: 85%;
+    height: 10%;
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 0px;
+    font-size: 15px;
+  }
+  .button-open-fivem {
+    background-color: #2C6FFF;
+    z-index: 1;
+    width: 335px;
+    height: 43px;
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 15px 7px;
+    font-size: 20px;
   }
 }

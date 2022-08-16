@@ -2,7 +2,7 @@
 
 session_start();
 require_once 'config/db.php';
-if (!isset($_SESSION['user_login'])) {
+if (!isset($_SESSION['user_login' || 'admin_login'])) {
     $_SESSION['error-login'] = 'กรุณาเข้าสู่ระบบก่อน';
     header('location: login.php');
 }
